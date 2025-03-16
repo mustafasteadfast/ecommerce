@@ -15,7 +15,7 @@ class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
     required this.title,
-    required this.price,
+    required this.price,  
     required this.oldPrice,
     required this.rating,
     required this.reviews,

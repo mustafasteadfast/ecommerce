@@ -150,15 +150,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PromotionalBanner(
-              pageController: _pageController,
-              currentPage: _currentPage,
-              customGreen: customGreen,
-              onPageChanged: (index) {
-                setState(() {
-                  _currentPage = index;
-                });
-              },
+            const PromotionalBanner(
+              sliderType: 'Slider Shop',
+              height: 180,
             ),
             const QuickActionsRow(),
             Container(
@@ -244,7 +238,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                    padding:
+                        const EdgeInsets.only(left: 16, right: 16, bottom: 16),
                     height: 150,
                   ),
                 ],
@@ -255,8 +250,14 @@ class _HomeScreenState extends State<HomeScreen> {
               items: [
                 for (var category in [
                   {'icon': 'assets/mens_fashion.png', 'name': "Men's\nFashion"},
-                  {'icon': 'assets/womens_fashion.png', 'name': "Women's\nFashion"},
-                  {'icon': 'assets/home_appliances.png', 'name': 'Home\nAppliances'},
+                  {
+                    'icon': 'assets/womens_fashion.png',
+                    'name': "Women's\nFashion"
+                  },
+                  {
+                    'icon': 'assets/home_appliances.png',
+                    'name': 'Home\nAppliances'
+                  },
                   {'icon': 'assets/home_wears.png', 'name': 'Home\nWears'},
                   {'icon': 'assets/furniture.png', 'name': 'Furniture'},
                 ])

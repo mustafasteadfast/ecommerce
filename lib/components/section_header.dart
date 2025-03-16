@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SectionHeader extends StatelessWidget {
   final String title;
   final Color titleColor;
-  final Color seeAllColor;
+  final Color? seeAllColor;
   final VoidCallback? onSeeAll;
 
   const SectionHeader({
@@ -35,7 +35,7 @@ class SectionHeader extends StatelessWidget {
             child: Text(
               'See All',
               style: TextStyle(
-                color: seeAllColor,
+                color: seeAllColor ?? Theme.of(context).primaryColor,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 fontFamily: 'Onest', // Applied Onest font
