@@ -127,7 +127,7 @@ class FlashSaleSection extends StatelessWidget {
                                 const SizedBox(height: 4),
                                 Text(
                                   '৳${product.price}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     color: AppColors.primary,
                                     fontWeight: FontWeight.bold,

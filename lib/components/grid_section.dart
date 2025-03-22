@@ -4,11 +4,15 @@ import 'section_header.dart';
 class GridSection extends StatelessWidget {
   final String title;
   final List<Widget> items;
+  final Color? seeAllColor;
+  final VoidCallback? onSeeAll; // Updated name
 
   const GridSection({
     super.key,
     required this.title,
     required this.items,
+    this.seeAllColor = const Color(0xFF00B795),
+    this.onSeeAll,
   });
 
   @override
@@ -19,7 +23,11 @@ class GridSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SectionHeader(title: title),
+          SectionHeader(
+            title: title,
+            seeAllColor: seeAllColor,
+            onSeeAll: onSeeAll, // Pass to SectionHeader
+          ),
           const SizedBox(height: 16),
           GridView(
             shrinkWrap: true,

@@ -10,12 +10,13 @@ class ProductCard extends StatelessWidget {
   final double fontSize;
   final double priceFontSize;
   final double ratingFontSize;
-  final String? fontFamily; // Added fontFamily parameter
+  final String? fontFamily;
+  final bool isNetworkImage;
 
   const ProductCard({
     super.key,
     required this.title,
-    required this.price,  
+    required this.price,
     required this.oldPrice,
     required this.rating,
     required this.reviews,
@@ -24,6 +25,7 @@ class ProductCard extends StatelessWidget {
     this.priceFontSize = 16,
     this.ratingFontSize = 12,
     this.fontFamily,
+    this.isNetworkImage = false,
   });
 
   @override
@@ -45,7 +47,9 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
+          SizedBox( // Replaced Expanded with SizedBox
+            height: 120, // Fixed height for image
+            width: double.infinity,
             child: Stack(
               children: [
                 Container(
@@ -54,7 +58,9 @@ class ProductCard extends StatelessWidget {
                       top: Radius.circular(12),
                     ),
                     image: DecorationImage(
-                      image: AssetImage(imagePath),
+                      image: isNetworkImage
+                          ? NetworkImage(imagePath)
+                          : AssetImage(imagePath) as ImageProvider,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -77,7 +83,7 @@ class ProductCard extends StatelessWidget {
                         color: Colors.white,
                         fontSize: 10,
                         fontWeight: FontWeight.w500,
-                        fontFamily: fontFamily, // Applied fontFamily
+                        fontFamily: fontFamily,
                       ),
                     ),
                   ),
@@ -96,7 +102,7 @@ class ProductCard extends StatelessWidget {
                     fontSize: fontSize,
                     fontWeight: FontWeight.w500,
                     height: 1.2,
-                    fontFamily: fontFamily, // Applied fontFamily
+                    fontFamily: fontFamily,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -110,7 +116,7 @@ class ProductCard extends StatelessWidget {
                         color: customGreen,
                         fontSize: priceFontSize,
                         fontWeight: FontWeight.bold,
-                        fontFamily: fontFamily, // Applied fontFamily
+                        fontFamily: fontFamily,
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -120,7 +126,7 @@ class ProductCard extends StatelessWidget {
                         color: Colors.grey[600],
                         fontSize: ratingFontSize,
                         decoration: TextDecoration.lineThrough,
-                        fontFamily: fontFamily, // Applied fontFamily
+                        fontFamily: fontFamily,
                       ),
                     ),
                   ],
@@ -139,7 +145,7 @@ class ProductCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: ratingFontSize,
                         fontWeight: FontWeight.w500,
-                        fontFamily: fontFamily, // Applied fontFamily
+                        fontFamily: fontFamily,
                       ),
                     ),
                     const SizedBox(width: 4),
@@ -148,7 +154,7 @@ class ProductCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: ratingFontSize,
                         color: Colors.grey[600],
-                        fontFamily: fontFamily, // Applied fontFamily
+                        fontFamily: fontFamily,
                       ),
                     ),
                   ],

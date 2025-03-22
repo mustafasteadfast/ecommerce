@@ -4,7 +4,7 @@ import 'package:ecommerce/models/slider.dart';
 
 class SliderService {
   static const String baseUrl = 'http://143.198.199.41:9999';
-  static const String slidersEndpoint = '/api/v1/sliders';
+  static const String slidersEndpoint = '/api/sliders';
 
   Future<SliderResponse> getSliders() async {
     try {
@@ -20,7 +20,7 @@ class SliderService {
     }
   }
 
-// API DATA
+  // Mock data for fallback
   SliderResponse _getMockSliderResponse() {
     final mockJson = {
       "message": "Sliders showed successfully",

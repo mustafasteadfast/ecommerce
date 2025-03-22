@@ -445,12 +445,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             const SizedBox(height: 16),
-            const ProductSection(
+            ProductSection(
               title: 'Featured Products',
-              height: 0, // GridSection handles height internally
+              height: 0,
               isGrid: true,
               itemCount: 4,
-              imagePrefix: 'assets/featured_\${index + 1}',
+              onSeeAll: () {
+                Navigator.pushNamed(context, '/all-products');
+              },
             ),
           ],
         ),
