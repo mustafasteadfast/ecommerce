@@ -71,11 +71,10 @@ class ProductResponse {
   final List<Product> products;
   final int total;
   final int skip; // Added total, skip, limit since not in filtered response
-  // Removed total, skip, limit since not in filtered response
 
   ProductResponse({
     required this.products,
-    required this.total, 
+    required this.total,
     required this.skip,
   });
 
@@ -84,8 +83,8 @@ class ProductResponse {
       products: (json['products'] as List)
           .map((item) => Product.fromJson(item))
           .toList(),
-          total: json['total'] as int,
-          skip: json['skip'] as int,
+      total: json['total'] as int,
+      skip: json['skip'] as int,
     );
   }
 }

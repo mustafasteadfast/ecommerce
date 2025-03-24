@@ -1,17 +1,14 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:ecommerce/services/dio_client.dart';
 import 'package:ecommerce/models/slider.dart';
 
 class SliderService {
-  static const String baseUrl = 'http://143.198.199.41:9999';
   static const String slidersEndpoint = '/api/sliders';
 
   Future<SliderResponse> getSliders() async {
     try {
-      final response = await http.get(Uri.parse('$baseUrl$slidersEndpoint'));
-
+      final response = await DioClient.instance.dio.get(slidersEndpoint);
       if (response.statusCode == 200) {
-        return SliderResponse.fromJson(json.decode(response.body));
+        return SliderResponse.fromJson(response.data);
       } else {
         throw Exception('Failed to load sliders: ${response.statusCode}');
       }
@@ -20,11 +17,10 @@ class SliderService {
     }
   }
 
-  // Mock data for fallback
   SliderResponse _getMockSliderResponse() {
     final mockJson = {
       "message": "Sliders showed successfully",
-      "data": {
+      "data": { 
         "2": {
           "slider_type": "Slider Shop",
           "sliders": [
@@ -65,7 +61,6 @@ class SliderService {
         }
       }
     };
-
     return SliderResponse.fromJson(mockJson);
   }
 }

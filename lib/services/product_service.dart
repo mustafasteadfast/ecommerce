@@ -1,18 +1,25 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:ecommerce/models/product.dart';
 
 class ProductService {
   static const String baseUrl = 'https://dummyjson.com';
   static const String productsEndpoint = '/products';
+  final Dio _dio;
+
+  ProductService() : _dio = Dio(BaseOptions(baseUrl: baseUrl));
 
   Future<ProductResponse> getProducts({int limit = 10, int skip = 0}) async {
-    final url = Uri.parse(
-        '$baseUrl$productsEndpoint?limit=$limit&skip=$skip&select=title,price,images');
     try {
-      final response = await http.get(url);
+      final response = await _dio.get(
+        productsEndpoint,
+        queryParameters: {
+          'limit': limit,
+          'skip': skip,
+          'select': 'title,price,images',
+        },
+      );
       if (response.statusCode == 200) {
-        return ProductResponse.fromJson(json.decode(response.body));
+        return ProductResponse.fromJson(response.data);
       } else {
         throw Exception('Failed to load products: ${response.statusCode}');
       }
@@ -22,12 +29,10 @@ class ProductService {
   }
 
   Future<int> getTotalProducts() async {
-    final url = Uri.parse('$baseUrl$productsEndpoint');
     try {
-      final response = await http.get(url);
+      final response = await _dio.get(productsEndpoint);
       if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        return data['total'] as int;
+        return response.data['total'] as int;
       } else {
         throw Exception('Failed to get total: ${response.statusCode}');
       }

@@ -60,8 +60,7 @@ class ProductSection extends StatelessWidget {
             oldPrice: productCard.oldPrice,
             rating: productCard.rating,
             reviews: productCard.reviews,
-            imagePath:
-                imagePrefix!.replaceAll('\${index + 1}', '${index + 1}'),
+            imagePath: imagePrefix!.replaceAll('\${index + 1}', '${index + 1}'),
             fontFamily: productCard.fontFamily,
             fontSize: productCard.fontSize,
             priceFontSize: productCard.priceFontSize,

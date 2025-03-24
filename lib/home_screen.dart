@@ -247,6 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             HorizontalScrollSection(
               title: 'Categories',
+              seeAllColor: customGreen,
               items: [
                 for (var category in [
                   {'icon': 'assets/mens_fashion.png', 'name': "Men's\nFashion"},
@@ -309,6 +310,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
               ],
               height: 120,
+              onSeeAll: () {
+                Navigator.pushNamed(context, '/categories');
+              },
             ),
             Padding(
               padding: const EdgeInsets.all(16),

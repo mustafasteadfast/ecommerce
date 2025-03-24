@@ -3,7 +3,6 @@ import 'package:ecommerce/blocs/combine/combine_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce/services/product_service.dart';
 
-
 class ProductBloc extends Bloc<CombineEvent, CombineState> {
   final ProductService _productService;
   ProductService get productService => _productService;

@@ -30,7 +30,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color customGreen = const Color(0xFF00B795);
+    const Color customGreen =  Color(0xFF00B795);
     return Container(
       width: 180,
       decoration: BoxDecoration(
